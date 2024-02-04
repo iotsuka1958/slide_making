@@ -1,0 +1,41 @@
+---
+title: "Ari"
+author: "Sean Kross"
+output: ioslides_presentation
+---
+
+<!-- みなさん、こんにちは。 -->
+
+
+## What is Ari?
+
+- Quickly create a lecture from plain text.
+- Update your lecture easily.
+- Your lecture is accessible.
+- The materials can be translated into other spoken and written languages.
+
+<!-- うまくいくといいです。 -->
+
+
+## Installation
+
+```{r, eval=FALSE}
+library(devtools)
+install_github("seankross/ari")
+```
+
+<!-- 道は険しい。 -->
+
+
+## Technology
+
+- Markdown
+- R
+- [Amazon Polly](https://aws.amazon.com/polly/)
+
+<!--きびしいです。 -->
+
+
+## Conclusion
+
+<!-- とほほ、という感じです。 -->
