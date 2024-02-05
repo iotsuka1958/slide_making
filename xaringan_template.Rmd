@@ -1,41 +1,177 @@
 ---
-title: "Ari"
-author: "Sean Kross"
-output: ioslides_presentation
+title: "3-minute speech"
+author: "ichiro otsuka"
+date: "2024-02-26"
+output:
+  ioslides_presentation:
+    widescreen: true
+    self_contained: true
 ---
 
-<!-- みなさん、こんにちは。 -->
+<!-- みなさん、おはようございます。 -->
+
+#   スキルアップに資する<br>3分スピーチ？
+
+<!-- スキルアップに資する3分スピーチという課題をいただきました。 -->
 
 
-## What is Ari?
+## 降りかかる災難とはいいませんが...
 
-- Quickly create a lecture from plain text.
-- Update your lecture easily.
-- Your lecture is accessible.
-- The materials can be translated into other spoken and written languages.
-
-<!-- うまくいくといいです。 -->
+<div class="columns-2">
+ <img src="./sad.jpg" style="width: 80%" />
 
 
-## Installation
+  - ハードルが高い
+  - 何を話せばいいのか、わからない
+  - 募りゆく不安
+</div>
 
-```{r, eval=FALSE}
-library(devtools)
-install_github("seankross/ari")
+<!-- 災難とまではいいませんが、ちょっぴりハードルが高く感じます。正直なところ、何を話せばいいのか、悩みます。当日が近づくについれて、不安が募ってきました。困りました。 -->
+
+# お茶をにごすしかない
+
+
+<!-- ここは、開き直ってお茶を濁すしかありません。 -->
+
+## 計算問題
+
+<div class="columns-2">
+### Question 1
+```{r eval=FALSE}
+12 - 11 - 1
 ```
 
-<!-- 道は険しい。 -->
+### Question 2
+```{r eval=FALSE}
+0.5 - 0.4 - 0.1
+```
+</div>
+
+<p>　</p>
+
+<p>　</p>
+
+<div class="columns-2">
+### Question 3
+```{r eval=FALSE}
+1.2 - 1.1 - 0.1
+```
+
+### Question 4
+```{r eval=FALSE}
+(0.5 - 0.4 - 0.1) * 100
+```
+</div>
 
 
-## Technology
+<!-- 演習をやってもらいます。といっても、ごくごく、かんたんな計算問題です。4問あります。みなさん、自分なりの答えをつくってください。 -->
 
-- Markdown
-- R
-- [Amazon Polly](https://aws.amazon.com/polly/)
+## 答え合わせ
 
-<!--きびしいです。 -->
+<div class="columns-2">
+### Question 1
+```{r eval=FALSE}
+12 - 11 - 1
+```
+0
+
+### Question 2
+```{r eval=FALSE}
+0.5 - 0.4 - 0.1
+```
+0
+</div>
+
+<p>　</p>
 
 
-## Conclusion
 
-<!-- とほほ、という感じです。 -->
+<div class="columns-2">
+### Question 3
+```{r eval=FALSE}
+1.2 - 1.1 - 0.1
+```
+0
+
+### Question 4
+```{r eval=FALSE}
+(0.5 - 0.4 - 0.1) * 100
+```
+0
+</div>
+
+
+<!-- 、答え合わせです。などと力む必要はありません。すべて正解はゼロです。ところで、ねんのため、というわけではありませんが、同じ計算をエクセルにやらせてみましょう。実際にやらせた結果は、つぎのとおりです。 -->
+
+## excel にやらせると...
+
+<div class="columns-2">
+### Question 1
+```{r eval=FALSE}
+12 - 11 - 1
+```
+0
+
+### Question 2
+```{r eval=FALSE}
+0.5 - 0.4 - 0.1
+```
+0
+</div>
+
+<p>　</p>
+
+
+
+<div class="columns-2">
+### Question 3
+```{r eval=FALSE}
+1.2 - 1.1 - 0.1
+```
+1.38778e-16
+
+### Question 4
+```{r eval=FALSE}
+(0.5 - 0.4 - 0.1) * 100
+```
+2.77556e-15
+</div>
+
+あれれれ`r emo::ji("munch")`
+
+<!-- 最初の2問はちゃんとゼロになっていますが、 3問目と4問目の答えがゼロになっていません。なんということでしょう。意外に思う方が多いのではないでしょうか。-->
+
+
+## excel の憂鬱
+
+- これが致命的なトラブルになることはあまりないかも
+
+
+- でも、ある値が 0 かどうかでふるまいを変えるような事務をするときは、<br>おもわぬエラーに
+
+<!-- これが、それほど深刻なトラブルになることはあまりないかもしれません。
+でも、特定の場面ではエラーにつながります。 -->
+
+---
+
+### でも、こどもから
+
+
+### <span style="color: #9999FF;">「excel で $1.2 - 1.1 - 0.1$ が $0$ にならないのは、なぜ？」</span>
+
+
+### と質問されたら、どうします？
+
+<!-- ただ、わたしが恐れているのは、子どもから「エクセルではなぜゼロにならないの？算数で習ったこととちがいます」と聞かれることです。ひとり一台端末が整備されて、こんな質問が出ることもありそうです。 下手な答え方をすると、子どもは確実に混乱します。この質問に答えるのは、みなさんです。-->
+
+
+
+## unicodeのすすめ
+
+- 森鷗外と内田百閒が髙島屋の近くの吉野屋じゃなくって𠮷野家で牛丼を食べた
+- 아뇨하세요
+- Julius Cæsar は &#x0152;sop の寓話を読んだかな
+- Москва, Ц ентральный административный округ, Москва, ЦФО, РФ
+- &#x2603;
+
+<!-- 文字コードについて。日本では長いあいだ Shift_JIS が使われてきましたが、そろそろユニコードに切り替えませんか。いろいろな文字があたりまえに使えます。難しい漢字でもハングルでも、ロシア語の文字もいけます。 -->
