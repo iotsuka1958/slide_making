@@ -1,0 +1,7 @@
+/* 
+https://stackoverflow.com/questions/40739933/rmarkdown-ioslides-cannot-change-font-family 
+windowsマシンではMeiryoにする
+*/
+slides > slide {
+  font-family:  'Noto Sans CJK JP', sans-serif;
+}
