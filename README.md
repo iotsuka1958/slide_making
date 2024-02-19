@@ -2,12 +2,22 @@
 
 
 音声付きのmp4ファイルをrstudioで作成する。
+使うのはwebshotパッケージとariパッケージ。ffmpegを別途インストールする必要あり。amazon pollyのIDも必要。
+
+参考にしたのは[ここ](https://qiita.com/kazutan/items/3b7db5cc572057e551ed)
 
 ```
 ari_narrate(script = "ioslides.Rmd", slides = "ioslides.html", output = "video.mp4", voice = "Takumi", delay = 16, capture_method = "iterative")
 ```
+## ioslidesとxaringan
 
-職場のマシンで実行した結果、できあがったmp4ファイルは、どういうわけかgoogle chromeのタブで再生すると、映像は流れるが音が出ない。スピーカーのアイコンがグレーアウトした状態。（ほかのソフトで再生すると音は出る。ただし映像が最初黒いが、なんかしてるうちに見られるようになる。ようわからない）
+xaringanが対応しているとのことだが、webshotで画像をうまく取得できない。市松模様になっちゃう。
+
+ということでioslides_presentationでやってみる。
+
+## 音声がgoogle chromeのタブで再生されない
+
+職場のマシン(windows11)で実行した結果、できあがったmp4ファイルは、どういうわけかgoogle chromeのタブで再生すると、映像は流れるが音が出ない。スピーカーのアイコンがグレーアウトした状態。（ほかのソフトで再生すると音は出る。ただし映像が最初黒いが、なんかしてるうちに見られるようになる。ようわからない）
 
 meetで動画共有したいのだが、このままだと音声が流れない。
 
