@@ -30,7 +30,7 @@ ffmpeg -i video.mp4 video.mp3
 実際の命令はつぎのとおり。
 
 ```
-ffmpeg -i video.mp4 -i audio.wav -c:v copy -c:a aac -map 0:v:0 -map 1:a:0 output.mp4
+ffmpeg -i video.mp4 -i video.mp3 -c:v copy -c:a aac -map 0:v:0 -map 1:a:0 output.mp4
 ```
 
 結果でき上ったoutput.mp4はgoogle chromeのタブ上で音声も映像も再生される。
