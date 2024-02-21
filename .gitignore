@@ -6,4 +6,8 @@
 *.mp3
 *.png
 *.html
+*.pptx
+*.pdf
+*.srt
 libs/
+pdf/
