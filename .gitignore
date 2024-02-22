@@ -9,5 +9,6 @@
 *.pptx
 *.pdf
 *.srt
+*.ass
 libs/
 pdf/
