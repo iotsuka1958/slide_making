@@ -13,7 +13,7 @@
 ari_narrate(script = "hoge.Rmd", slides = "hoge.html", output = "video.mp4", voice = "Takumi", delay = 10, zoom = 2, capture_method = "iterative")
 ```
 
-hoge.Rmd（読み原稿をコメントアウトした形で入力したやつ）およびそれでつくった hoge.html を用意する。出力動画を video.mp4 とする。voice は、現状で Takumi（男性）と Mizuki（女性）のどちらかを指定。zoom=2くらいにしておいたほうができあがり画像がきれい。
+hoge.Rmd（読み原稿をコメントアウトした形で入力したやつ）およびそれでつくった hoge.html を用意する。出力動画を video.mp4 とする。voice は、現状で Takumi（男性）と Mizuki（女性）のどちらかを指定。zoom=2くらいにしておいたほうができあがりの画像がきれい。delay の値が小さいと、画像がうまく取得できないことがある。ただし、大きくすると、各ページを画像ファイルに落としこむのに時間がかかる。
 
 
 ## ioslides と xaringan
@@ -55,7 +55,7 @@ Rmarkdown ファイルおよびそれでつくった html ファイルから、m
 
 ただ、次のようなデメリットもある。
 
-- html から画面をキャプチャするのに、ari::ari_narrate() を走らせると、うまくいかないことがある（裏で動いている webshot::webshot()、さらにその裏で動いている phantomjs が原因らしい。ぐぐると phantomjs は開発が終了しているらしくて、非推奨らしい）
+- html から画面をキャプチャするのに、ari::ari_narrate() を走らせると、うまくいかないことがある（裏で動いている webshot::webshot()、さらにその裏で動いている phantomjs が原因らしい。ぐぐると phantomjs は開発が終了しているらしくて、非推奨らしい。どうやら、一部の unicode 文字がはいっていると蹴られるみたい）
 - とりあえず mp4 はできあがっても、キャプチャした画像が、html で見たときと違うところがでてくることがある（htmlでは表示できている文字がうまくでないところがある。色がとぶところもある）
 - ioslides_presentation でつくった html ファイルだとうまくいくが、xaringan でつくった html ファイルだと、うまくキャプチャできない
 - ioslides_presentaion で widescreen: true とすると、最後の数枚のスライドがうまくキャプチャできない
@@ -73,7 +73,22 @@ Rmd さえつくってしまえば、すごくかんたんで魅力的なやり�
 1. ari::ari_spin() で mp4 作成
 1. 音がうまくのっていない場合は、先ほど書いたやり方で音を乗せなおす
 
-### pdf → png
+### pdf スライド
+
+最初から pdf で作成すればそれでよし。
+
+もとのスライドを html でつくった場合は、なんらかの手段で pdf に変換する。
+この段階で、きれいな pdf になっていないとだめ。
+
+powerpoint で作成した "hoge.pptx" を pdf にするには、`docxtractr::convert_to_pdf("hoge.pptx"")`とする方法が[ここ](https://johnmuschelli.com/ari_paper/)
+で紹介されているが、手元の pptx ファイルで試したところ、きれいな pdf にならなかった。
+
+adobe acrobat で pdf 化したら、うまくいった。
+
+### pdf $\longrightarrow$ png
+
+pdf が用意できれば、つぎは画像ファイルに変換。
+png が推奨らしい。
 
 いろいろあるだろうが、次のやり方がかんたん。
 
@@ -84,6 +99,14 @@ pngs <- pdftools::pdf_convert("slide.pdf", dpi = 300)
 これで、slide.pdf が slide_1.png, slide_2.png ... みたいにページごとの png ファイルに変換される。と同時にオブジェクト pngs に、できあがった複数のファイル名が格納されるので、のちのち便利。
 
 dpi で解像度を 300 に指定している。
+
+試していないが、poppler の pdftoppm を使うのもありかな。
+
+```
+pdftoppm -png slide.pdf hoge
+```
+
+とすれば、各ページが hoge-1.png, hoge-2.png みたいになる。
 
 ### 読み原稿の準備
 
