@@ -9,22 +9,40 @@
 と
 [ここ](https://johnmuschelli.com/ari_paper/)
 
+## Rmd $\longrightarrow$ mp4
+
+hoge.Rmd（読み原稿をコメントアウトした形で入力したやつ）およびそれでつくった hoge.html を用意する。
+ここまでできれば、ほとんど終わったようなもの。
+
+Rstudioで実際に打つコマンドはつぎのとおり。
+
 ```
-ari_narrate(script = "hoge.Rmd", slides = "hoge.html", output = "video.mp4", voice = "Takumi", delay = 10, zoom = 2, capture_method = "iterative")
+ari::ari_narrate(
+  script = "hoge.Rmd",
+  slides = "hoge.html",
+  output = "video.mp4",
+  voice = "Takumi",
+  delay = 10,
+  zoom = 2,
+  capture_method = "iterative"
+)
 ```
 
-hoge.Rmd（読み原稿をコメントアウトした形で入力したやつ）およびそれでつくった hoge.html を用意する。出力動画を video.mp4 とする。voice は、現状で Takumi（男性）と Mizuki（女性）のどちらかを指定。zoom=2くらいにしておいたほうができあがりの画像がきれい。delay の値が小さいと、画像がうまく取得できないことがある。ただし、大きくすると、各ページを画像ファイルに落としこむのに時間がかかる。
-
+出力動画を video.mp4 とする。voice は、現状で Takumi（男性）と Mizuki（女性）のどちらかを指定。
+zoom=2くらいにしておいたほうができあがりの画像がきれい。
+delay の値が小さいと、画像がうまく取得できないことがある。ただし、大きくすると、各ページを画像ファイルに落としこむのに時間がかかる。
+capture_method は "vectorized" と "iterative" があって、前者のほうが早いらしいが、ioslides
+ で作成したスライドの場合は後者にしろということだ。
 
 ## ioslides と xaringan
 
-xaringan が対応しているとのことだが、webshot で画像をうまく取得できない。市松模様になっちゃう。
+xaringan が対応しているとのことだが、webshot で画像をうまく取得できない。ほとんど真っ黒になっちゃう。
 
-ということで ioslides_presentation でやってみる。
+ということで ioslides_presentation でやってみた。
 
 ## 音声が google chrome のタブで再生されない
 
-職場のマシン (windows11) で実行した結果、できあがったmp4ファイルは、どういうわけか google chrome のタブで再生すると、映像は流れるが音が出ない。スピーカーのアイコンがグレーアウトした状態。（ほかのソフトで再生すると音は出る。ただし映像が最初黒いが、なんかしてるうちに見られるようになる。ようわからない）
+職場のマシン (windows11) で実行した結果、できあがった mp4 ファイルは、どういうわけか google chrome のタブで再生すると、映像は流れるが音が出ない。スピーカーのアイコンがグレーアウトした状態。（ほかのソフトで再生すると音は出る。ただし映像が最初黒いが、なんかしてるうちに見られるようになる。ようわからない）
 
 google meetで動画共有したいのだが、このままだと音声が流れない。
 
@@ -40,7 +58,7 @@ ffmpeg -i video.mp4 video.mp3
 ffmpeg -i video.mp4 -i video.mp3 -c:v copy -c:a aac -map 0:v:0 -map 1:a:0 output.mp4
 ```
 
-結果でき上ったoutput.mp4はgoogle chromeのタブ上で音声も映像も再生される。
+結果できあがったoutput.mp4はgoogle chromeのタブ上で音声も映像も再生される。
 
 映像と音声の結合に関して、参考にしたサイトは[ここ](https://qiita.com/niusounds/items/f69a4438f52fbf81f0bd)
 
@@ -107,6 +125,11 @@ pdftoppm -png slide.pdf hoge
 ```
 
 とすれば、各ページが hoge-1.png, hoge-2.png みたいになる。
+ただし、この場合は、できあがった複数の png ファイルを、別途オブジェクト pngs に格納しておくてまがかかる。
+
+```
+pngs <- list.files(pattern = "^hoge") |> dput()
+```
 
 ### 読み原稿の準備
 
@@ -148,3 +171,14 @@ notes <- ariExtra::pptx_notes("slide.pptx")
 powerpoint の世界単体で動画はできるんだろうが、AI 音声つきの動画ができるというのが強みだとおもう。
 
 わたしは powerpoint を使うことはないから、ありがたみはない。
+
+
+## 落穂ひろい
+
+### 減量
+
+できあがった mp4 を減量するには
+``` 
+ffmpeg -i hoge.mp4 -r 1/10 -ac 1 -ar 16000 oyoyo.mp4
+```
+とかする。`-r 1/10`で1/10[フレーム/秒]にしている。この数字が大きくなるとファイルサイズが大きくなる。なお、1未満の数値は小数ではなく分数を使えということらしい。この数値が動画の長さに関係してくるとのこと。‘-ac 1`は音声をモノラルにする。`-ar 16000`は音声のサンプリングレートを16[khz]にしている。
