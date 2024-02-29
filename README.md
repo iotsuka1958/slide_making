@@ -118,17 +118,17 @@ pngs <- pdftools::pdf_convert("slide.pdf", dpi = 300)
 
 dpi で解像度を 300 に指定している。
 
-試していないが、poppler の pdftoppm を使うのもありかな。
+試していないが、poppler の pdftoppm を使うのもありかな。これは Rstudio上じゃなくて、ターミナルでやっておく。
 
 ```
 pdftoppm -png slide.pdf hoge
 ```
 
 とすれば、各ページが hoge-1.png, hoge-2.png みたいになる。
-ただし、この場合は、できあがった複数の png ファイルを、別途オブジェクト pngs に格納しておくてまがかかる。
+ただし、この場合は、できあがった複数の png ファイルを、オブジェクト pngs に格納しておく。
 
 ```
-pngs <- list.files(pattern = "^hoge") |> dput()
+pngs <- list.files(pattern = "^hoge") 
 ```
 
 ### 読み原稿の準備
