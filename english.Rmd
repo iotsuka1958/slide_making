@@ -1,0 +1,40 @@
+---
+title: "Let's Study English"
+author: "iotsuka"
+date: "2024-07-01"
+output:
+  ioslides_presentation:
+    css: my_font.css
+---
+
+<!-- おはようございます。 -->
+
+#   エ&#x3099;ーッ、<br>スキルアップに資する<br>3分スピーチ？
+
+<!-- Good morning, everybody. How are you? -->
+
+
+## 降りかかる災難
+
+<div style="display:inline-block;
+  width:42%;vertical-align:top;">
+
+
+ <img src="./sad.jpg" style="width: 95%" >
+ 
+</div><div style="display: inline-block;
+  width:56%;vertical-align:top;">
+
+  - ハードルが高い
+  - 何を話せばいいのか
+  - 募りゆく不安
+  
+
+</div>
+
+
+
+
+
+<!-- Let's begin today's lesson. -->
+
